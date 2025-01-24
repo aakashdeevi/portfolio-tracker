@@ -1,0 +1,75 @@
+import React from "react";
+import { Button, Box, Typography, AppBar, Toolbar, Container } from "@mui/material";
+import { Link } from "react-router-dom";
+
+function Home() {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        bgcolor: "black",
+        color: "white",
+      }}
+    >
+      {/* Navbar */}
+      <AppBar position="static" sx={{ bgcolor: "black" }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+            Portfolio Tracker
+          </Typography>
+          <Box>
+            <Link to="/" style={{ textDecoration: "none", color: "white", margin: "0 10px" }}>
+              Home
+            </Link>
+            <Link to="/dashboard" style={{ textDecoration: "none", color: "white", margin: "0 10px" }}>
+              Dashboard
+            </Link>
+            <Link to="/stocks" style={{ textDecoration: "none", color: "white", margin: "0 10px" }}>
+              Holdings
+            </Link>
+            <Link to="/add-stock" style={{ textDecoration: "none", color: "white", margin: "0 10px" }}>
+              Add Stock
+            </Link>
+            <Link to="#" style={{ textDecoration: "none", color: "white", margin: "0 10px" }}>
+              Currency
+            </Link>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Main Content */}
+      <Container
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h2" component="h1" sx={{ mb: 3, fontWeight: "bold" }}>
+          Portfolio Tracker
+        </Typography>
+        <Link to="/dashboard" style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "white",
+              color: "black",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              "&:hover": { bgcolor: "#ddd" },
+            }}
+          >
+            Get Started
+          </Button>
+        </Link>
+      </Container>
+    </Box>
+  );
+}
+
+export default Home;
