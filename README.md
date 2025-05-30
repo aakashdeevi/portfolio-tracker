@@ -1,15 +1,42 @@
-# Portfolio Tracker
+# Portfolio Tracker - Stock Management System
 
-The **Portfolio Tracker** is a full-stack web application designed to help users track and manage their stock portfolio. This project includes a React frontend, a Spring Boot backend, and a MySQL database. Users can add, view, edit, and delete stock records within their portfolio.
+**Portfolio Tracker** is a robust full-stack web application to help users track and manage their stock portfolio. This project includes a React frontend, a Spring Boot backend, and a MySQL database. Users can add, view, edit, and delete stock records within their portfolio.
 
-## Features
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1uMAeym2cnXHyjw5dykzEjibwv093i3IC" alt="Portfolio Tracker Homepage" width="80%"/>
+  <br>
+  <em>Modern interface with portfolio performance overview</em>
+</p>
 
-- **Add Stock:** Add new stocks to the portfolio with details like stock ticker, quantity, and buy price.
-- **Edit Stock:** Modify stock details such as the quantity or buy price.
-- **Delete Stock:** Remove stocks from the portfolio.
-- **View Portfolio:** Display all stocks in the portfolio with details like stock name, ticker, quantity, and buy price.
+## Key Features
 
-## Tech Stack
+### Portfolio Management
+- **Add/Edit/Delete Stocks**: Perform full CRUD operations.
+- **Real-Time Data**: Integrated with Finnhub API.
+- **Portfolio Valuation**: Auto-calculates total value.
+- **Detailed Metrics**: Analyze individual stock performance.
+
+###  User Experience
+- **Responsive Design**: Fully adaptable UI.
+- **Material-UI**: Sleek components & layout.
+- **Dashboard View**: Graphs & summary stats.
+- **Form Validation**: Prevents invalid input.
+
+###  Technical Highlights
+- **Spring Boot REST API**: Backend built with Spring Boot 3.1+.
+- **React SPA**: Smooth client-side routing with React 18+.
+- **MySQL 8**: Reliable, structured data storage.
+- **Axios**: Handles all API communications.
+
+## 🖼️ Application Screenshots
+
+| Dashboard | Stock List | Add Stock Form |
+|-----------|------------|----------------|
+| <img src="https://drive.google.com/uc?export=view&id=1vp6OYsZ42OiG07kSTn34ZY1d-PeM4rEN" width="300"> | <img src="https://drive.google.com/uc?export=view&id=1aKxkOrGOPZ3HBGhHSmE3VbcZXrubjLF9" width="300"> | <img src="https://drive.google.com/uc?export=view&id=1zz4QJ60IhH-IjQPm5KkxpvKblkit-0lv" width="300"> |
+
+---
+
+## Technology Stack
 
 ### Frontend:
 - **React:** A JavaScript library for building user interfaces.
@@ -20,19 +47,52 @@ The **Portfolio Tracker** is a full-stack web application designed to help users
 ### Backend:
 - **Spring Boot:** A Java-based framework used to create stand-alone, production-grade Spring-based applications.
 - **Spring Data JPA:** Simplifies database interactions and provides a repository-based approach for persistence.
-- **MySQL:** A relational database to store the stock data.
+- **Lombok:** Reduces boilerplate code by automatically generating getters, setters, constructors, and other common methods through annotations.
 
 ### Database:
 - **MySQL:** Used to store stock details (e.g., stock name, ticker, quantity, and buy price).
+- **MySQL Connector:** Enables seamless communication between Java applications and MySQL databases through JDBC.
 
-## Assumptions and Limitations
+### APIs
+- **Finnhub API**: Fetch live market data.
+- **Custom REST API**: All stock-related operations.
 
-- **MySQL Database:** You must have MySQL installed locally to run the backend.
-- **Schema Creation:** The backend application will automatically create the necessary tables in the database upon startup. However, you need to ensure that the `portfolio_tracker` schema exists in your database.
-- **No Authentication:** This application does not include any authentication or user management features. Anyone with access to the application can manage stocks.
-- **Development Mode:** The frontend is intended to run in development mode with a hot-reloading server. It will not be optimized for production by default.
 
 ## Project Setup and Running Locally
+
+### Prerequisites
+- Java 17+
+- Node.js 16+
+- MySQL 8+
+- Maven 3.6+
+
+## Directory Structure
+
+```plaintext
+portfolio-tracker/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── portfolio/
+│   │   │   ├── resources/
+│   │   │   │   └── application.properties
+│   │   │   └── Stock.java  # JPA Entity for Stock
+│   │   └── pom.xml  # Backend Maven dependencies and configuration
+│   └── target/  # Compiled backend files
+├── frontend/
+│   ├── public/  # Static files for React
+│   ├── src/
+│   │   ├── components/  # React components
+│   │   ├── App.js  # Main React component
+│   │   └── index.js  # React entry point
+│   └── package.json  # Frontend dependencies and scripts
+├── README.md  # This file
+└── .gitignore  # Git ignore file
+```
+
+### Installation
 
 ### 1. Clone the Repository
 
@@ -216,31 +276,12 @@ Delete a stock from the portfolio.
 }
 ```
 
-## Directory Structure
+## Assumptions and Limitations
 
-```plaintext
-portfolio-tracker/
-├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── portfolio/
-│   │   │   ├── resources/
-│   │   │   │   └── application.properties
-│   │   │   └── Stock.java  # JPA Entity for Stock
-│   │   └── pom.xml  # Backend Maven dependencies and configuration
-│   └── target/  # Compiled backend files
-├── frontend/
-│   ├── public/  # Static files for React
-│   ├── src/
-│   │   ├── components/  # React components
-│   │   ├── App.js  # Main React component
-│   │   └── index.js  # React entry point
-│   └── package.json  # Frontend dependencies and scripts
-├── README.md  # This file
-└── .gitignore  # Git ignore file
-```
+- **MySQL Database:** MySQL must be installed locally to run the backend.
+- **Schema Creation:** The application automatically creates necessary tables at startup. However, the `portfolio_tracker` schema must already exist in your MySQL database.
+- **No Authentication:** The application does not include authentication or user management. Anyone with access can manage stocks.
+- **Development Mode:** The frontend is designed to run in development mode with hot-reloading. It is not optimized for production deployment by default.
 
 ## Additional Notes
 
@@ -250,10 +291,16 @@ portfolio-tracker/
 
 ## Troubleshooting
 
-### 1. Spring Boot Application Not Starting
-- Check that your MySQL service is running.
-- Ensure that the database `portfolio_tracker` exists. You can create it manually using the provided SQL command.
+#### Backend Issues
 
-### 2. Frontend Not Connecting to Backend
-- Ensure that the backend is running on `http://localhost:8081`.
-- Verify that the backend API endpoints are correct and match the frontend's Axios requests.
+- **MySQL Connection Errors:** Ensure MySQL service is running and credentials are correct in `application.properties`.
+- **Port Conflicts:** Verify that port `8081` is not in use by another process.
+
+#### Frontend Issues
+
+- **API Connectivity:** Confirm that the backend is running on `http://localhost:8081`.
+- **CORS Errors:** Check the browser console for any CORS-related issues.
+- **Proxy Configuration:** Ensure the proxy is set correctly in `frontend/package.json`:
+  ```json
+  "proxy": "http://localhost:8081"
+Axios requests.
